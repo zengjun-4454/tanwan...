@@ -1,0 +1,4 @@
+user:root
+passwd:123456
+port:3307
+msyqldb:zengjun
