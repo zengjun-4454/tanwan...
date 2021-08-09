@@ -1,5 +1,5 @@
-user=root
-passwd=123456
-port=3307
-msyqldb=zengjun
+root
+123456
+3307
+zengjun
 mysql -uroot -p123456
