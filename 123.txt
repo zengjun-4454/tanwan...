@@ -1,0 +1,27 @@
+
+def login_github(username,password):#登陆Github
+      #初始化参数
+      login_url = 'https://github.com/login'
+      session_url = 'https://github.com/session'
+      try:
+          #获取session
+          s = requests.session()
+          resp = s.get(login_url).text
+          dom_tree = etree.HTML(resp)
+ 
+          #获取authenticity_token
+          key = dom_tree.xpath('//input[@name="authenticity_token"]/@value')
+          user_data = {
+              'commit: 'Sign in',
+              'utf8': '✓',
+              'authenticity_token':key,
+              'login': username,
+              'password': password
+          }
+          #发送数据并登陆
+          s.post(session_url,data=user_data)
+          #验证是否登陆成功
+          s.get('https://github.com/settings/profile')
+          return s
+      except:
+          print('产生异常，请检查网络设置及用户名和密码') 
